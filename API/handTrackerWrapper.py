@@ -6,13 +6,13 @@ from API.SimpleHand import SimpleHand
 
 
 class HandTrackerWrapper:
-    def __init__(self, flip_image=True, mode=False, max_hands=2, detection_con=0.5, model_complexity=1, track_con=0.5):
+    def __init__(self, flip_image=True, camera_ch=0, mode=False, max_hands=2, detection_con=0.5, model_complexity=1, track_con=0.5):
         self.__mp_hands = mp.solutions.hands.Hands(mode, max_hands, model_complexity,
                                                    detection_con, track_con)
         self.hands_list = HandsList()
         self.__flip_image = flip_image
         self.found_hands = False
-        self.cap = cv2.VideoCapture(0)
+        self.cap = cv2.VideoCapture(camera_ch)
 
     def update_hands_list(self):
 
