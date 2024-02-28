@@ -1,5 +1,7 @@
 RT = "Right"
 LF = "Left"
+
+
 class HandsList:
     def __init__(self):
         self.right = None
@@ -7,17 +9,23 @@ class HandsList:
 
     def __str__(self):
         result = ""
-        if self.hasRight():
+        if self.has_right():
             result += str(self.right)
         else:
             result += "Right: not found. "
-        if self.hasLeft():
+        if self.has_left():
             result += " " + str(self.left)
         else:
             result += "Left: not found. "
         return result
 
-    def addHand(self, hand):
+    def __iter__(self):
+        if self.has_right():
+            yield self.right
+        if self.has_left():
+            yield self.left
+
+    def add_hand(self, hand):
         if hand.side == RT:
             self.right = hand
         else:
@@ -30,8 +38,8 @@ class HandsList:
         self.left = None
         self.right = None
 
-    def hasRight(self):
+    def has_right(self):
         return self.right is not None
 
-    def hasLeft(self):
+    def has_left(self):
         return self.left is not None
